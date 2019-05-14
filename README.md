@@ -8,7 +8,7 @@ Scraping data olx.co.id (https://www.olx.co.id/elektronik-gadget/handphone/?view
 # Run
 Cara menjalankan scraper OLX:
 1. Buka command prompt, arahkan ke direktori scrapertugas
-2. Run "scrapy runspider scrapeolx.py"
+2. Run "scrapy runspider scrapehandphoneolx.py"
 
 # Menampilkan Visualisasi
 <b>visualisasihandphoneolx.html</b> : untuk menampilkan hasil visualisasi
