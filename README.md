@@ -11,4 +11,4 @@ Cara menjalankan scraper OLX:
 2. Run "scrapy runspider scrapehandphoneolx.py"
 
 # Menampilkan Visualisasi
-<b>visualisasihandphoneolx.html</b> : untuk menampilkan hasil visualisasi
+<b>index.html</b> : untuk menampilkan hasil visualisasi
