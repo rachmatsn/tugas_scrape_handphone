@@ -1,0 +1,1 @@
+{"labels": ["Nokia", "Samsung", "Oppo", "Apple", "Xiaomi"], "Baru": [122, 5, 10, 5, 8], "Bekas": [134, 22, 13, 12, 9]}

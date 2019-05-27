@@ -7,18 +7,109 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <title>OLX Chart: Jual Beli Handphone Baru dan Bekas di Bandung Kota </title>
+  
+<style>
+.visualisasi
+{
+  position: absolute;
+  right: 100px;
+}
+</style>
+
 </head>
 <body>
   <div class="container">
+    </br>
+    <div class="visualisasi"> 
+    <select id="select">
+        <option value="chart1">Visualisasi 1</option>
+        <option value="chart2">Visualisasi 2</option>
+        <option value="chart3">Visualisasi 3</option>
+    </select>
+    </div>
+    
     <canvas id="myChart"></canvas>
+    </br>
+    
+    <div><b><i>Keterangan chart:</i></b> </br> <i><span class="keterangan"></span></i></div>
   </div>
+  
+  
   <script type="text/javascript">
+    //default
     var d = {"labels": ["Nokia", "Samsung", "Oppo", "Apple", "Xiaomi"],
-    "k1": [122, 134],
-    "k2": [5, 22],
-    "k3": [10, 13],
-    "k4": [5, 12],
-    "k5": [8, 9]}
+    "Baru": [122, 5, 10, 5, 8], 
+    "Bekas": [134, 22, 13, 12, 9]
+    };
+    var judul = "OLX Top5 - Lima Merk Handphone (Baru dan Bekas) dengan Total Iklan Penjualan Terbanyak di Bandung Kota";
+    var keteranganChart = "Chart di atas menunjukkan lima merk handphone baik kondisi baru maupun bekas yang mempunyai total pengiklanan penjualan terbanyak di Bandung Kota. Bar 'biru' mewakili jumlah handphone dengan kondisi baru, sedangkan bar 'kuning' mewakili jumlah handphone dengan kondisi bekas. Arahkan cursor pada bar untuk mengetahui jumlah pada masing-masing merk dengan kondisi baru atau bekas!";
+    //
+    
+    function onchange(e) {
+        if (e.currentTarget.value === 'chart1') {
+            var d = {"labels": ["Nokia", "Samsung", "Oppo", "Apple", "Xiaomi"],
+            "Baru": [122, 5, 10, 5, 8], 
+            "Bekas": [134, 22, 13, 12, 9]};
+            var judul = "OLX Top5 - Lima Merk Handphone (Baru dan Bekas) dengan Total Iklan Penjualan Terbanyak di Bandung Kota";
+            var keteranganChart = "Chart di atas menunjukkan lima merk handphone baik kondisi baru maupun bekas yang mempunyai total pengiklanan penjualan terbanyak di Bandung Kota. Bar 'biru' mewakili jumlah handphone dengan kondisi baru, sedangkan bar 'kuning' mewakili jumlah handphone dengan kondisi bekas. Arahkan cursor pada bar untuk mengetahui jumlah pada masing-masing merk dengan kondisi baru atau bekas!";
+            
+            chart.options.title.text = judul;
+            chart.options.tooltips.callbacks.label = function(tooltipItem, data) {
+                                                      var label = data.datasets[tooltipItem.datasetIndex].label;
+                                                      var val = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                                                      return label + ' : ' + val;
+                                                    };
+            chart.data.labels = d["labels"];
+            chart.data.datasets[0].data = d["Baru"];
+            chart.data.datasets[1].data = d["Bekas"];
+            document.querySelector('.keterangan').innerHTML = keteranganChart;
+            chart.update();
+        }
+        else if (e.currentTarget.value === 'chart2'){
+            var d = {"labels": ["Nokia", "Samsung", "Oppo", "Apple", "Xiaomi"], 
+            "Baru": [6000000, 12990000, 3699000, 5700000, 4999000], 
+            "Bekas": [4099000, 8100000, 3700000, 11250000, 3500000]};
+            var judul = "OLX Top5 - Harga TERMAHAL pada Lima Merk Handphone (Baru dan Bekas) pada Iklan Penjualan di Bandung Kota";
+            var keteranganChart = "Chart di atas menunjukkan harga TERMAHAL pada setiap merk handphone (Nokia, Samsung, Oppo, Apple, Xiaomi) baik kondisi baru maupun bekas pada iklan penjualan di Bandung Kota. Bar 'biru' mewakili harga TERMAHAL pada merk handphone dengan kondisi baru, sedangkan bar 'kuning' mewakili harga TERMAHAL pada merk handphone dengan kondisi bekas. Arahkan cursor pada bar untuk mengetahui harga TERMAHAL pada masing-masing merk dengan kondisi baru atau bekas!";
+            
+            chart.options.title.text = judul;
+            chart.options.tooltips.callbacks.label = function(tooltipItem, data) {
+                                                      var label = data.datasets[tooltipItem.datasetIndex].label;
+                                                      var val = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                                                      var rupiah  = "Rp. " + val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                                                    
+                                                      return label + " : " + rupiah;
+                                                    };
+            chart.data.labels = d["labels"];
+            chart.data.datasets[0].data = d["Baru"];
+            chart.data.datasets[1].data = d["Bekas"];
+            document.querySelector('.keterangan').innerHTML = keteranganChart;
+            chart.update();
+        }
+        else if (e.currentTarget.value === 'chart3'){
+            var d = {"labels": ["Nokia", "Samsung", "Oppo", "Apple", "Xiaomi"], 
+            "Baru": [50000, 1749000, 1750000, 2200000, 1200000], 
+            "Bekas": [30000, 300000, 600000, 1699999, 900000]};
+            var judul = "OLX Top5 - Harga TERMURAH pada Lima Merk Handphone (Baru dan Bekas) pada Iklan Penjualan di Bandung Kota";
+            var keteranganChart = "Chart di atas menunjukkan harga TERMURAH pada setiap merk handphone (Nokia, Samsung, Oppo, Apple, Xiaomi) baik kondisi baru maupun bekas pada iklan penjualan di Bandung Kota. Bar 'biru' mewakili harga TERMURAH pada merk handphone dengan kondisi baru, sedangkan bar 'kuning' mewakili harga TERMURAH pada merk handphone dengan kondisi bekas. Arahkan cursor pada bar untuk mengetahui harga TERMURAH pada masing-masing merk dengan kondisi baru atau bekas!";
+            
+            chart.options.title.text = judul;
+            chart.options.tooltips.callbacks.label = function(tooltipItem, data) {
+                                                      var label = data.datasets[tooltipItem.datasetIndex].label;
+                                                      var val = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                                                      var rupiah  = "Rp. " + val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                                                    
+                                                      return label + " : " + rupiah;
+                                                    };
+            chart.data.labels = d["labels"];
+            chart.data.datasets[0].data = d["Baru"];
+            chart.data.datasets[1].data = d["Bekas"];
+            document.querySelector('.keterangan').innerHTML = keteranganChart;
+            chart.update();
+        }
+    }
+
+    document.getElementById('select').addEventListener('change', onchange);  
 
     var olxChart = document.getElementById('myChart')
 
@@ -28,19 +119,19 @@
         labels:d['labels'],
         datasets:[{
           label:'Baru',
-          backgroundColor:'#2A9D8F',
-          data:[d['k1'][0],d['k2'][0],d['k3'][0],d['k4'][0],d['k5'][0]]
+          backgroundColor:'#123C69',
+          data:d['Baru']
         }, {
           label:'Bekas',
-          backgroundColor:'#F4A261',
-          data:[d['k1'][1],d['k2'][1],d['k3'][1],d['k4'][1],d['k5'][1]]
+          backgroundColor:'#F3C130',
+          data:d['Bekas']
         },]
       },
       options:{
         title:{
           position:'top',
           display:true,
-          text:['OLX - Penjualan Lima Merk Handphone Baru dan Bekas Terbanyak di Bandung Kota'],
+          text:judul,
           fontSize:18,
           padding:30
         },
@@ -60,10 +151,12 @@
           }
         },
         tooltips:{
-          enable:true
-        }
+          enabled:true,
+        },
       }
     });
+    
+    document.querySelector('.keterangan').innerHTML = keteranganChart;
   </script>
 </body>
 </html>
