@@ -12,3 +12,4 @@ Cara menjalankan scraper OLX:
 
 # Menampilkan Visualisasi
 <b>index.html</b> : untuk menampilkan hasil visualisasi
+run -> https://rachmatsn.github.io/tugas_scrape_handphone/
